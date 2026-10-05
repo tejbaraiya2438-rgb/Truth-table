@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Truth Table | AND & OR</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="badge">LOGIC GATE WORKING MODEL</div>
+
+            <h1>Truth Table</h1>
+
+            <p>
+                Interactive AND &amp; OR Logic Demonstration
+            </p>
+        </header>
+
+
+        <!-- LIVE VALUES -->
+        <section class="live-values">
+
+            <div class="value-card">
+                <span>A</span>
+                <strong id="valueA">0</strong>
+                <small>Cable Connection</small>
+            </div>
+
+            <div class="value-card">
+                <span>B</span>
+                <strong id="valueB">0</strong>
+                <small>Current Flow</small>
+            </div>
+
+            <div class="value-card">
+                <span>AND</span>
+                <strong id="andResult">0</strong>
+                <small>A &amp;&amp; B</small>
+            </div>
+
+            <div class="value-card">
+                <span>OR</span>
+                <strong id="orResult">0</strong>
+                <small>A || B</small>
+            </div>
+
+        </section>
+
+
+        <!-- MAIN WORKING AREA -->
+        <section class="working-area">
+
+            <!-- TRUTH TABLE -->
+            <div class="panel truth-panel">
+
+                <div class="panel-title">
+                    <h2>Truth Table</h2>
+                    <span id="activeCombination">A=0, B=0</span>
+                </div>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>AND</th>
+                                <th>OR</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr id="row-00">
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>OFF</td>
+                            </tr>
+
+                            <tr id="row-01">
+                                <td>0</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>OFF</td>
+                            </tr>
+
+                            <tr id="row-10">
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>OFF</td>
+                            </tr>
+
+                            <tr id="row-11">
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>ON</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="table-note">
+                    <span class="dot"></span>
+                    The highlighted row shows the current trigger.
+                </div>
+
+            </div>
+
+
+            <!-- LIVE CIRCUIT -->
+            <div class="panel circuit-panel">
+
+                <div class="panel-title">
+                    <h2>Live Circuit</h2>
+                    <span id="circuitState">OFF</span>
+                </div>
+
+
+                <!-- CIRCUIT -->
+                <div class="circuit">
+
+                    <div class="circuit-node battery-node">
+                        <div class="icon">🔋</div>
+                        <span>Battery</span>
+                    </div>
+
+
+                    <div class="wire wire-left"></div>
+
+
+                    <!-- CURRENT SWITCH -->
+                    <button
+                        id="currentSwitch"
+                        class="circuit-switch"
+                        type="button"
+                        aria-pressed="false"
+                    >
+                        <span class="switch-body">
+                            <span class="switch-lever"></span>
+                        </span>
+
+                        <span class="switch-label">
+                            Current
+                        </span>
+
+                        <small class="switch-status">
+                            OFF
+                        </small>
+                    </button>
+
+
+                    <div
+                        id="cable"
+                        class="wire cable-wire"
+                    ></div>
+
+
+                    <!-- CABLE CONNECTION SWITCH -->
+                    <button
+                        id="cableSwitch"
+                        class="circuit-switch"
+                        type="button"
+                        aria-pressed="false"
+                    >
+                        <span class="switch-body">
+                            <span class="switch-lever"></span>
+                        </span>
+
+                        <span class="switch-label">
+                            Cable
+                        </span>
+
+                        <small class="switch-status">
+                            DISCONNECTED
+                        </small>
+                    </button>
+
+
+                    <div class="wire wire-right"></div>
+
+
+                    <!-- BULB -->
+                    <div
+                        id="bulb"
+                        class="bulb-container"
+                    >
+
+                        <div class="bulb">💡</div>
+
+                        <span id="bulbStatus">
+                            BULB OFF
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONDITIONS -->
+                <div class="conditions">
+
+                    <div class="condition">
+
+                        <span class="condition-symbol">A</span>
+
+                        <div>
+                            <strong>Cable Connection</strong>
+                            <small id="cableCondition">
+                                Not Connected
+                            </small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="condition">
+
+                        <span class="condition-symbol">B</span>
+
+                        <div>
+                            <strong>Current Flow</strong>
+                            <small id="currentCondition">
+                                No Current
+                            </small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULT -->
+                <div
+                    id="resultMessage"
+                    class="result-message"
+                >
+                    No cable connection and no current flow → Bulb OFF.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOGIC EXPLANATION -->
+        <section class="logic-explanation">
+
+            <h2>How the Model Works</h2>
+
+            <div class="logic-formula">
+
+                <div>
+                    <span>Condition A</span>
+                    <strong>Cable Connected</strong>
+                </div>
+
+                <b>+</b>
+
+                <div>
+                    <span>Condition B</span>
+                    <strong>Current Flowing</strong>
+                </div>
+
+                <b>→</b>
+
+                <div class="output">
+                    <span>AND RESULT</span>
+                    <strong>💡 BULB</strong>
+                </div>
+
+            </div>
+
+            <p>
+                The bulb glows only when both conditions are TRUE.
+                Cable connection must be present AND current must be flowing.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
